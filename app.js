@@ -57,13 +57,14 @@ function openAdvancedMode() {
       else if (j === 3) {
         cell.innerHTML = "↓";
         cell.style.width = "5%";
+        cell.contentEditable = false;
       }
 
       var storedValue = localStorage.getItem(i + "," + j);
-      /*if(storedValue) {
+      if(storedValue) {
         cell.innerHTML = storedValue;
         cell.contentEditable = false;
-      } */
+      }
       cell.addEventListener("input", function(event) {
         var updatedValue = event.target.innerHTML;
         //var cellValues = {};
@@ -114,24 +115,31 @@ function getResult() {
     runningTotal = monthlyInvestmentAmount + v;
     v = runningTotal*(1+(expectedAnnualReturnRate/(12*100)));
   } 
-
-  let v2 = 0;
+  /*let v2 = 0;
   let runningTotal2 = 0;
   for(let i = 0; i < investPeriodYears; i++) {
-    runningTotal2 = Number(localStorage.getItem(i + ",1")) + v;
+    runningTotal2 = Number(localStorage.getItem(i + ",1")) + v2;
     let investmentRate2 = Number(localStorage.getItem(i + ",2"));
     v2 = runningTotal2*(1+((investmentRate2)/(12*100)));
     //document.write(runningTotal);
     //document.write(investmentRate);
-    //document.write(v);
+    //document.write(v); 
+  }  */
+  let v2 = 0;
+  for(let i = 0; i < 4; i++) {
+    for(let j = 1; j <= 12; j++) {
+      let investmentRate2 = Number(localStorage.getItem(i + ",2"));
+      v2 = (v2 + investmentRate2)*(1 + (investmentRate2/(12*100)))
+    }
   }
+
   let wealthGained = v - amountInvestedOverPeriod;
   //let amountInvestedOverPeriodFormattedUS = amountInvestedOverPeriod.toLocaleString('en-US', {style: 'currency', currency: 'US', maximumFractionDigits: 2});
   //let vFormattedUS = v.toLocaleString('en-US', {style: 'currency', currency: 'US', maximumFractionDigits: 2});
   //let wealthGainedFormattedUS = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'US', maximumFractionDigits: 2});
 
   document.getElementById('answerField-1').value = amountInvestedOverPeriod;
-  document.getElementById('answerField-2').value = v2.toFixed(2);
+  document.getElementById('answerField-2').value = v.toFixed(2);
   document.getElementById('answerField-3').value = wealthGained.toFixed(2);
 
   var canvas = document.getElementById("investmentGraph");
