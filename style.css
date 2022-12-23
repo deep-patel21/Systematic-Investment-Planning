@@ -269,6 +269,24 @@ input[type="number"] {
     margin-left: 375px;
     margin-top: 530px;
 }
+.popup .yearP {
+    position: absolute;
+    transform: rotateZ(270deg);
+    margin-top: 75px;
+    margin-left: -560px;
+}
+.popup .investmentP {
+    position: absolute;
+    font-size: 20px;
+    margin-left: -425px;
+    margin-top: 10px;
+}
+.popup .returnP {
+    position: absolute;
+    font-size: 20px;
+    margin-left: -167px;
+    margin-top: 10px;
+}
 .copyright {
     background: #fdd9b5;
     width: 100%;
@@ -281,4 +299,17 @@ input[type="number"] {
     margin-top: 2px;
     margin-left: 700px;
     font-family: 'Comfortaa', sans-serif, monospace;
+}
+.flagCounterSpecs {
+    border: 2px solid #ff004f;
+    border-radius: 12px;
+    float: left;
+    position: absolute;
+    margin-left: 186px;
+    overflow: hidden;
+    width: 300px;
+    margin-left: 1500px;
+}
+.flagCounterSpecs:hover {
+    border: 3px solid white;
 }
