@@ -1,6 +1,16 @@
 function openAdvancedMode() {
   let popup = document.getElementById('popup');
   popup.classList.add('open-popup');
+
+  var container = document.createElement('div');
+  container.style.position = "fixed"
+  container.style.top = "50%";
+  container.style.left = "50%";
+  container.style.transform = "translate(-50%, -50%)";
+  container.style.overflow = "scroll";
+  container.style.width = "1400px";
+  container.style.height = "325px";
+
   var table = document.createElement("table");
   var numRows = parseFloat(document.getElementById('input-2').value);
   var monthlyInvestmentInTable = document.getElementById('input-1').value;
@@ -9,14 +19,14 @@ function openAdvancedMode() {
 
   table.style.border = "1px solid black";
   table.style.borderCollapse = "collapse";
-  table.style.width = "500px";
+  table.style.width = "1400px";
   table.style.height = "325px";
   table.style.justifyContent = "center";
   table.style.textAlign = "center";
   table.style.display = "table";
   table.style.position = "absolute";
-  table.style.marginTop = "300px";
-  table.style.marginLeft = "450px";
+  table.style.marginTop = "225px";
+  table.style.marginLeft = "250px";
   table.style.zIndex = "999";
   table.style.opacity = "0";
   table.style.transition = "opacity 0.25s";
@@ -50,19 +60,21 @@ function openAdvancedMode() {
       }
 
       var storedValue = localStorage.getItem(i + "," + j);
-      if(storedValue) {
+      /*if(storedValue) {
         cell.innerHTML = storedValue;
-      }
-      
+        cell.contentEditable = false;
+      } */
       cell.addEventListener("input", function(event) {
         var updatedValue = event.target.innerHTML;
-        var cellValues = {};
-        cellValues[i + "," + j] = updatedValue;
+        //var cellValues = {};
+        //cellValues[i + "," + j] = updatedValue;
         localStorage.setItem(event.target.parentElement.rowIndex + "," + event.target.cellIndex, updatedValue);
         //localStorage.setItem(event.target.cellValues)
       });
+    
     }
   }
+  
   document.body.insertBefore(table, document.body.firstChild);
   table.style.opacity = "1";
 }
@@ -77,37 +89,49 @@ function closeAdvancedMode() {
 var button = document.getElementById("advancedModeButton");
 button.addEventListener("click", openAdvancedMode)
 
+document.getElementById('input-1').addEventListener('input', getResult);
+document.getElementById('input-2').addEventListener('input', getResult);
+document.getElementById('input-3').addEventListener('input', getResult);
+
+for(var i = 0; i < numRows; i++) {
+  for(var j = 0; j < 4; j++) {
+    var cell = table.rows[i].cells[j];
+    cell.addEventListener("input", getResult);
+  }
+}
+
 function getResult() { 
-  let monthlyInvestmentAmount = parseFloat(document.getElementById('input-1').value);
+  //let monthlyInvestmentAmount = (parseFloat(document.getElementById('input-1').value)).addEventListener('input', getResult);
+  let monthlyInvestmentAmount = parseFloat(document.getElementById('input-1').value)
   let investPeriodYears = parseFloat(document.getElementById('input-2').value);
   let investPeriodMonths = investPeriodYears * 12;
   let expectedAnnualReturnRate = parseFloat(document.getElementById('input-3').value);
   let amountInvestedOverPeriod = monthlyInvestmentAmount * investPeriodMonths;
-  
-  /*let v = 0;
+
+  let v = 0;
   let runningTotal = 0;
   for(let i = 1; i <= investPeriodMonths; i++) {
     runningTotal = monthlyInvestmentAmount + v;
     v = runningTotal*(1+(expectedAnnualReturnRate/(12*100)));
-  } */
+  } 
 
-  let v = 0;
+  let v2 = 0;
+  let runningTotal2 = 0;
   for(let i = 0; i < investPeriodYears; i++) {
-    let runningTotal = parseFloat(localStorage.getItem(i + ",1")) + v;
-    let investmentRate = parseFloat(localStorage.getItem(i + ",2"));
-    v = runningTotal*(1+((investmentRate)/(12*100)));
+    runningTotal2 = Number(localStorage.getItem(i + ",1")) + v;
+    let investmentRate2 = Number(localStorage.getItem(i + ",2"));
+    v2 = runningTotal2*(1+((investmentRate2)/(12*100)));
     //document.write(runningTotal);
     //document.write(investmentRate);
     //document.write(v);
   }
-
   let wealthGained = v - amountInvestedOverPeriod;
   //let amountInvestedOverPeriodFormattedUS = amountInvestedOverPeriod.toLocaleString('en-US', {style: 'currency', currency: 'US', maximumFractionDigits: 2});
   //let vFormattedUS = v.toLocaleString('en-US', {style: 'currency', currency: 'US', maximumFractionDigits: 2});
   //let wealthGainedFormattedUS = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'US', maximumFractionDigits: 2});
 
-  document.getElementById('answerField-1').value = amountInvestedOverPeriod.toFixed(2);
-  document.getElementById('answerField-2').value = v.toFixed(2);
+  document.getElementById('answerField-1').value = amountInvestedOverPeriod;
+  document.getElementById('answerField-2').value = v2.toFixed(2);
   document.getElementById('answerField-3').value = wealthGained.toFixed(2);
 
   var canvas = document.getElementById("investmentGraph");
