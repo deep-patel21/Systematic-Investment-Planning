@@ -43,11 +43,12 @@ function openAdvancedMode() {
       }
       else if (j === 2) {
         cell.innerHTML = investmentRateTable;
+        cell.style.width = "15%";
       }
       else if (j === 3) {
-        cell.innerHTML = "↓";
-        cell.style.width = "5%";
-        cell.contentEditable = false;
+        cell.innerHTML = "-------------";
+        cell.style.width = "25%";
+        cell.contentEditable = true;
       }
       var storedValue = localStorage.getItem(i + "," + j);
       if(storedValue) {
@@ -82,33 +83,23 @@ document.getElementById('input-3').addEventListener('input', getResult);
 function updateV() {
   var numRows = document.getElementById('table').rows.length;
   var expectedValue = 0;
+  var totalInvestmentAmount = 0;
   for(var i = 0; i < numRows; i++) {
-    var years = document.getElementById('table').rows[i].cells[0].innerHTML;
-    var investmentAmount = document.getElementById('table').rows[i].cells[0].innerHTML;
+    var investmentAmount = document.getElementById('table').rows[i].cells[1].innerHTML;
     var returnRate = document.getElementById('table').rows[i].cells[2].innerHTML;
-    years = parseFloat(years);
+
     investmentAmount = parseFloat(investmentAmount);
     returnRate = parseFloat(returnRate);
-    expectedValue = (investmentAmount/12) + expectedValue;
-    expectedValue = expectedValue*(1+(returnRate/(12*100)));
-  }
-  document.getElementById('answerField-1').value = investmentAmount;
-  document.getElementById('answerField-2').value = expectedValue; 
-  document.getElementById('answerField-3').value = expectedValue - investmentAmount;
+    totalInvestmentAmount += investmentAmount;
+    var monthlyInvestmentPerYear = investmentAmount / 12;
+  
+    expectedValue = (expectedValue+investmentAmount)*(1+(returnRate/(100)));
+    document.getElementById('table').rows[i].cells[3].innerHTML = expectedValue.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+  } 
 
-
-  /*let numRows = parseFloat(document.getElementById('input-2').value);
-  let expectedValue = 0;
-  let runningTotal = 0;
-  for(let i = 0; i < numRows; i++) {
-    let investmentAmount = parseFloat(localStorage.getItem(i + ",1"));
-    let returnRate = parseFloat(localStorage.getItem(i + ",2"));
-    runningTotal = (yearlyInvestmentInTable/12) + runningTotal;
-    expectedValue = runningTotal*(1+(returnRate/(12*100)));
-  }
-  document.getElementById('answerField-2').value = expectedValue; */
-
-
+  document.getElementById('answerField-1').value = totalInvestmentAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+  document.getElementById('answerField-2').value = expectedValue.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2}); 
+  document.getElementById('answerField-3').value = (expectedValue - totalInvestmentAmount).toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
 }
 
 function getResult() { 

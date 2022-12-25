@@ -277,14 +277,20 @@ input[type="number"] {
 }
 .popup .investmentP {
     position: absolute;
-    font-size: 20px;
+    font-size: 17px;
     margin-left: -265px;
     margin-top: 10px;
 }
 .popup .returnP {
     position: absolute;
-    font-size: 20px;
-    margin-left: 250px;
+    font-size: 17px;
+    margin-left: 125px;
+    margin-top: 10px;
+}
+.popup .corpusP {
+    position: absolute;
+    font-size: 17px;
+    margin-left: 275px;
     margin-top: 10px;
 }
 .download-button {
