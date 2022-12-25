@@ -4,6 +4,7 @@ function openAdvancedMode() {
 
   var table = document.createElement("table");
   var numRows = parseFloat(document.getElementById('input-2').value);
+
   var monthlyInvestmentInTable = document.getElementById('input-1').value;
   var yearlyInvestmentInTable = monthlyInvestmentInTable * 12;
   var investmentRateTable = document.getElementById('input-3').value;
@@ -16,10 +17,13 @@ function openAdvancedMode() {
   table.style.textAlign = "center";
   table.style.display = "table";
   table.style.position = "absolute";
+
   table.style.marginTop = "225px";
   table.style.marginLeft = "250px";
+
   table.style.zIndex = "999";
   table.style.opacity = "0";
+  table.style.overflowY = "scroll";
   table.id = "table";
 
   window.onbeforeunload = function() {
@@ -39,16 +43,26 @@ function openAdvancedMode() {
         cell.contentEditable = false;
       }
       else if (j === 1) {
-        cell.innerHTML = yearlyInvestmentInTable;
+        if(monthlyInvestmentInTable != null) {
+          cell.innerHTML = yearlyInvestmentInTable;
+        }
+        else {
+          cell.innerHTML = 0;
+        }
       }
       else if (j === 2) {
-        cell.innerHTML = investmentRateTable;
+        if(investmentRateTable == 0 || investmentRateTable == " ") {
+          cell.innerHTML = 0;
+        }
+        else {
+          cell.innerHTML = investmentRateTable;
+        }
         cell.style.width = "15%";
       }
       else if (j === 3) {
         cell.innerHTML = "-------------";
         cell.style.width = "25%";
-        cell.contentEditable = true;
+        cell.contentEditable = false;
       }
       var storedValue = localStorage.getItem(i + "," + j);
       if(storedValue) {
@@ -61,7 +75,6 @@ function openAdvancedMode() {
       });
     }
   }
-  
   document.body.insertBefore(table, document.body.firstChild);
   table.style.opacity = "1";
 }
@@ -70,7 +83,7 @@ function closeAdvancedMode() {
   let popup = document.getElementById('popup');
   popup.classList.remove("open-popup");
   var table = document.getElementById("table");
-  table.parentNode.removeChild(table);
+  table.parentNode.removeChild(table);  
 }
 
 var button = document.getElementById("advancedModeButton");
@@ -108,7 +121,7 @@ function getResult() {
   let investPeriodMonths = investPeriodYears * 12;
   let expectedAnnualReturnRate = parseFloat(document.getElementById('input-3').value);
   let amountInvestedOverPeriod = monthlyInvestmentAmount * investPeriodMonths;
-
+  
   let v = 0;
   let runningTotal = 0;
   for(let i = 1; i <= investPeriodMonths; i++) {
