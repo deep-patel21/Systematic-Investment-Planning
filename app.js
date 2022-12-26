@@ -1,4 +1,9 @@
 function openAdvancedMode() {
+  if(!document.getElementById('input-1').value || !document.getElementById('input-2').value || !document.getElementById('input-3').value) {
+    alert("Please enter values in all input fields before accessing advanced mode.");
+    return;
+  }
+
   let popup = document.getElementById('popup');
   popup.classList.add('open-popup');
 
@@ -87,6 +92,16 @@ function closeAdvancedMode() {
 }
 
 var button = document.getElementById("advancedModeButton");
+
+button.style.position = "absolute";
+button.style.marginLeft = "-166px";
+button.style.marginTop = "55px"
+button.style.padding = "10px 30px";
+button.style.border = "black 2px solid";
+button.style.borderRadius = "12px";
+button.style.fontSize = "20px";
+button.style.fontWeight = "600";
+
 button.addEventListener("click", openAdvancedMode);
 
 document.getElementById('input-1').addEventListener('input', getResult);
@@ -193,40 +208,51 @@ function getResult() {
         } 
       }
     }); 
+    document.getElementById('investmentGraph').style.display = "block";
 }
 
-/*function getPDF() {
-  const tableForPDF = document.getElementById('table');
-  if(!tableForPDF) {
-    return;
+function graphCheck() {
+  if(!document.getElementById('input-1').value || !document.getElementById('input-2').value || !document.getElementById('input-3').value) {
+    alert("Please enter values in all input fields before generating the graph of your investments. The data is currently blank.");
   }
-  const pdf = new jsPDF();
-  pdf.setFontSize(12);
-  pdf.setFontStyle('normal');
-  for (let i = 0; i < tableForPDF.rows.length; i++) {
-    for (let j = 0; j < tableForPDF.rows[i].cells.length; j++) {
-      const cellText = tableForPDF.rows[i].cells[j].textContent;
-      const cellRect = tableForPDF.rows[i].cells[j].getBoundingClientRect();
-      pdf.text(cellText, cellRect.left, cellRect.top + 12);
-    }
-  }
-  const tableRect = tableForPDF.getBoundingClientRect();
-  pdf.rect(tableRect.left, tableRect.top, tableRect.width, tableRect.height);
 }
 
-const downloadButton = document.getElementById('download-button');
-downloadButton.addEventListener('click', () => {
-  getPDF();
-  pdf.save('investment-plan.pdf')
-}); */
+var downloadButton = document.createElement('button');
+downloadButton.innerHTML = "Download PDF";
 
-/*function checkTableValues() {
-  for(let i = 0; i < numRows; i++) {
-    for(let j = 0; j < 4; j++) {
-      let tableValueTest = localStorage.getItem(i + "," + j);
-      document.write(tableValueTest + " ");
+downloadButton.addEventListener("click", function() {
+  var table = document.getElementById('table');
+  var docPDF = new jsPDF();
+  //var data = [];
+  for(var i = 0; i < table.rows.length; i++) {
+    //var row = [];
+    for(var j = 0; j < table.rows[0].cell.length; j++) {
+      //var cell = table.rows[i].cells[j];
+      //row.push(cell.innerHTML);
+      docPDF.cell(10, 10, 10, 10, table.rows[i].cells[j].innerHTML, i);
     }
-    document.write("<br>");
+   // data.push(row);
   }
-} */
+  /*docPDF.autoTable({
+    head: [['Year', 'Investment Amount', 'Return Rate', 'Expected Value']],
+    body: data
+  }); */
+  if(!document.getElementById('input-1').value || !document.getElementById('input-2').value || !document.getElementById('input-3').value) {
+    alert("Please enter values in all input fields before downloading the PDF file");
+  }
+  else {
+    docPDF.save("investmentPlan.pdf");
+  }
+});
+
+document.body.appendChild(downloadButton);
+downloadButton.style.position = "absolute";
+downloadButton.style.padding = "10px 20px";
+downloadButton.style.background = "white";
+downloadButton.style.fontSize = "20px";
+downloadButton.style.fontWeight = "600";
+downloadButton.style.borderRadius = "12px";
+downloadButton.style.marginTop = "577px";
+downloadButton.style.marginLeft = "1160px";
+downloadButton.style.zIndex = "-1";
 

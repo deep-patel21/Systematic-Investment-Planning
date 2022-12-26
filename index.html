@@ -40,8 +40,8 @@
             <h3 class="detail-6">Wealth Gained:</h3>  
         </div>
         <div class="results">
-            <button class="calculate" onclick="getResult()">Calculate</button>
-            <a href="#investmentGraph" class="seeGraph">See Graph</a>
+            <button class="calculate" onclick="getResult()">Force Calculate</button>
+            <a href="#investmentGraph" class="seeGraph" onclick="graphCheck()">See Graph</a>
             <canvas id="investmentGraph" width="200" height="100"></canvas>
         </div>
         <div class="advancedMode">
@@ -58,7 +58,7 @@
                 <table id="table" class="advancedModeTable" border="0" style="font-size: 25px; text-align: justify;"></table><form>
             </div>
         </div>
-        <button id="download-button" class="download-button">Download PDF</button>
+        <!--<button id="download-button" class="download-button" onclick="getPDF()">Download PDF</button>-->
     </div>
     <div class="container">
         <div class="box">

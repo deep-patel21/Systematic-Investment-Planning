@@ -20,8 +20,8 @@ body {
     color: black;
     background: #fff;
     box-sizing: border-box;
-    border: white 3px solid;
-    padding: 10px 150px;
+    border: black 2px solid;
+    padding: 10px 47px;
     font-size: 20px;
     font-weight: 600;
     border-radius: 12px;
@@ -195,17 +195,13 @@ input[type="number"] {
 }
 .calculate {
     position: absolute;
-    padding: 10px 150px;
+    padding: 10px 30px;
     font-size: 20px;
     font-weight: 600;
     border-radius: 12px;
-    margin-left: 350px; 
+    margin-left: 335px; 
     margin-top: 640px;
-    border: #ccc 1px solid;
-}
-.calculate:hover {
-    box-shadow: gray 1px 2px 5px;
-    border: none;
+    border: black 2px solid;
 }
 .advancedMode {
     position: absolute;
@@ -293,7 +289,7 @@ input[type="number"] {
     margin-left: 275px;
     margin-top: 10px;
 }
-.download-button {
+/*.download-button {
     position: absolute;
     padding: 15px 15px;
     font-size: 15px;
@@ -301,6 +297,9 @@ input[type="number"] {
     border-radius: 12px;
     margin-top: 1010px;
     margin-left: 1700px;    
+} */
+#investmentGraph {
+    display: none;
 }
 .copyright {
     background: #fdd9b5;
