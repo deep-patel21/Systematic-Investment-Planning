@@ -17,7 +17,7 @@ function openAdvancedMode() {
   table.style.border = "1px solid black";
   table.style.borderCollapse = "collapse";
   table.style.width = "1400px";
-  table.style.height = "325px";
+  table.style.height = "auto";
   table.style.justifyContent = "center";
   table.style.textAlign = "center";
   table.style.display = "table";
@@ -25,10 +25,13 @@ function openAdvancedMode() {
 
   table.style.marginTop = "225px";
   table.style.marginLeft = "250px";
-
   table.style.zIndex = "999";
-  table.style.opacity = "0";
-  table.style.overflowY = "scroll";
+  //table.style.opacity = "0";
+  if(numRows > 21) {
+    table.style.overflowY = "scroll";
+    table.style.maxHeight = "600px";
+    table.style.maxWidth = "1450px";
+  }
   table.id = "table";
 
   window.onbeforeunload = function() {
@@ -89,6 +92,8 @@ function closeAdvancedMode() {
   popup.classList.remove("open-popup");
   var table = document.getElementById("table");
   table.parentNode.removeChild(table);  
+  var scrollableTable = document.getElementById("scrollableTable");
+  scrollableTable.parentNode.removeChild(scrollableTable);
 }
 
 var button = document.getElementById("advancedModeButton");

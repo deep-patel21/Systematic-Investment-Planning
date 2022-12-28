@@ -12,11 +12,13 @@
     <title>SIP Calculator</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8419641602197838"
+     crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
         <!--Replace with site header information related to calculator-->
-        <div class="pageHeaderText">
+        <div class="pageHeaderText" id="landingPage">
             <h1>Systematic Investment Planning Tool</h1>    
         </div>
         <div class="pageHeaderLogo">
@@ -42,19 +44,21 @@
         <div class="results">
             <button class="calculate" onclick="getResult()">Force Calculate</button>
             <a href="#investmentGraph" class="seeGraph" onclick="graphCheck()">See Graph</a>
+            <a href="#landingPage" class="backUpButton">Back to Top</a>
             <canvas id="investmentGraph" width="200" height="100"></canvas>
         </div>
         <div class="advancedMode">
             <!--<button id="advancedModeButton" onclick="openAdvancedMode()" target="_blank" class="button">Advanced Mode</button>-->
             <button id="advancedModeButton" class="button">Advanced Mode</button>
+            
             <div class="popup" id="popup">
                 <p class="yearP">Year</p>
                 <p class="investmentP">Investment (Year)</p>
                 <p class="returnP">Return Rate (%)</p>
                 <p class="corpusP">Corpus Amount (End of Year)</p>
-                <button class="doneButton" onclick="closeAdvancedMode()">Done</button>
+                <button id="doneButton" class="doneButton" onclick="closeAdvancedMode()">Done</button>
             </div>
-            <div class="table">
+            <div class="table" style="overflow: auto;">
                 <table id="table" class="advancedModeTable" border="0" style="font-size: 25px; text-align: justify;"></table><form>
             </div>
         </div>
@@ -74,6 +78,10 @@
     </div>
     <div class="copyright">
         <p><i class="fa-solid fa-code"></i> Developed by CalcSimple © 2022</p>
+    </div>
+    <div class="disclaimer">
+        <p>Disclaimer: This site does not provide finanical advice. All figures shown are merely illustration and are not representative
+            of real market returns. Please use as a tool for education. We are not liable for any losses incurred.</p>
     </div>
     <div class="counter">
         <a href="http://s11.flagcounter.com/more/yyB4" target="_blank">
