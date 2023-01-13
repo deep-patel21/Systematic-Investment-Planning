@@ -115,3 +115,18 @@ body {
     text-align: center;
   }
   
+  table {
+    width: 100%; /* Set table width to 100% */
+    border-collapse: collapse; /* Remove cell borders */
+  }
+  
+  th, td {
+    border: 1px solid #ddd; /* Add cell borders */
+    padding: 8px; /* Add padding to cells */
+    text-align: center; /* Center text in cells */
+  }
+  
+  th {
+    background-color: #f2f2f2; /* Add a light gray background color to header cells */
+  }
+  
