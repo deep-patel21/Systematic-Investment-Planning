@@ -31,7 +31,6 @@ document.getElementById("calculateBtn").addEventListener("click", function() {
     document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
     document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
 
-
     var additionalInvestmentPeriod = investmentPeriod + 10;
     let additionalExpectedAmount = 0;
     let addtionalRunningTotal = 0;
@@ -45,6 +44,24 @@ document.getElementById("calculateBtn").addEventListener("click", function() {
     " If you invest for another <b>10 years</b>, your portfolio value would be " + 
     outputAdditionalExpectedAmount;
     outputTextIdentifier.style.opacity = "1";
+
+    /*switch(selectedCurrency) {
+      case "USD":
+        document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+        document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
+        document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+        break;
+      case "CAD":
+        document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});
+        document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});      
+        document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});
+        break;
+      case "INR":
+        document.getElementById("amountInvested").value = amountInvested.toLocaleString("en-IN", {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
+        document.getElementById("expectedAmount").value = expectedAmount.toLocaleString("en-IN", {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
+        document.getElementById("wealthGained").value = wealthGained.toLocaleString("en-IN", {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
+        break;
+    } */
   });
   
   function updateExpectedValue() {
@@ -198,5 +215,34 @@ function swapVisuals() {
     //document.getElementById('myChart').style.opacity = "0";
     document.getElementById('view-chart-btn').innerHTML = "View Graph";
     document.getElementById('comingSoonMessage').style.opacity = "0";
+  }
+}
+
+const currencySelect = document.getElementById("currency-select");
+currencySelect.addEventListener("change", function() {
+  const selectedCurrency = this.value;
+  amountInvestedSwap = parseFloat(document.getElementById("amountInvested").value);
+  expectedAmountSwap = parseFloat(document.getElementById("expectedAmount").value);
+  wealthGainedSwap = parseFloat(document.getElementById("wealthGained").value);
+  updateCurrency(selectedCurrency);
+});
+
+function updateCurrency(selectedCurrency) {
+  switch(selectedCurrency) {
+    case "USD":
+      document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+      document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
+      document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+      break;
+    case "CAD":
+      document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});
+      document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});      
+      document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});
+      break;
+    case "INR":
+      document.getElementById("amountInvested").value = parseFloat(amountInvested).toLocaleString("en-IN", {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
+      document.getElementById("expectedAmount").value = parseFloat(expectedAmount).toLocaleString("en-IN", {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
+      document.getElementById("wealthGained").value = parseFloat(wealthGained).toLocaleString("en-IN", {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
+      break;
   }
 }
