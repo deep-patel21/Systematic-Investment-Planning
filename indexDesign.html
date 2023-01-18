@@ -15,7 +15,7 @@
 </head>
 <body>
     <div>
-        <label for="currency-select">Select Currency:</label>
+        <label for="currency-select" class="currency-select-label">Select Currency:</label>
         <select id="currency-select">
           <option value="USD">USD</option>
           <option value="INR">INR</option>
@@ -82,7 +82,11 @@
     </div>
     <div id="output-text">
         <b>Extended Analysis:</b><br>
-        <p>Fill out the three input fields on the left to get started!</p>
+        <p>Fill out the three input fields at the top to get started!</p>
+        <div id="sliderContainer">
+            <!--<input type="range" min="0" max="50" step="5" id="yearSlider">
+            <p id="output"></p>
+          </div>-->
     </div>
     <div id="advanced-box" style="display:none;">
         <button id="close-btn">Close</button>

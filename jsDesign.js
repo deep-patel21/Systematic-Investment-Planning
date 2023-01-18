@@ -2,8 +2,16 @@ if(performance.navigation.type == performance.navigation.TYPE_RELOAD) {
   localStorage.clear();
 }
 
+//var slider = document.getElementById("yearSlider");
+//slider.style.opacity = "0";
 //var outputTextIdentifier = document.getElementById('output-text');
 //outputTextIdentifier.style.opacity = "0";
+
+/*function updateSentence() {
+  const sentence = `Wow! That's good compounding. You know what's better? If you invest for another ${selectedYears} years, your portfolio value would be `;
+  document.getElementById("outputTextIdentifier").innerHTML = sentence + additionalExpectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+} */
+
 document.getElementById("calculateBtn").addEventListener("click", function() {
   if(!document.getElementById('monthlyInvestment').value || !document.getElementById('investmentPeriod').value || !document.getElementById('annualReturnRate').value) {
     alert("Please enter values in all input fields before calculating.");
@@ -31,6 +39,7 @@ document.getElementById("calculateBtn").addEventListener("click", function() {
     document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
     document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
 
+
     var additionalInvestmentPeriod = investmentPeriod + 10;
     let additionalExpectedAmount = 0;
     let addtionalRunningTotal = 0;
@@ -45,24 +54,13 @@ document.getElementById("calculateBtn").addEventListener("click", function() {
     outputAdditionalExpectedAmount;
     outputTextIdentifier.style.opacity = "1";
 
-    /*switch(selectedCurrency) {
-      case "USD":
-        document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
-        document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
-        document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
-        break;
-      case "CAD":
-        document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});
-        document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});      
-        document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});
-        break;
-      case "INR":
-        document.getElementById("amountInvested").value = amountInvested.toLocaleString("en-IN", {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
-        document.getElementById("expectedAmount").value = expectedAmount.toLocaleString("en-IN", {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
-        document.getElementById("wealthGained").value = wealthGained.toLocaleString("en-IN", {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
-        break;
-    } */
-  });
+   /* const slider= document.getElementById("yearSlider");
+    const output = document.getElementById("output-text");
+    slider.addEventListener("input", function() {
+      const selectedYears = this.value;
+      updateSentence(selectedYears);
+    }); */
+  }); 
   
   function updateExpectedValue() {
     var numberOfRows = document.getElementById("investment-table").rows.length;
