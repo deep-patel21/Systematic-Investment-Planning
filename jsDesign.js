@@ -2,16 +2,6 @@ if(performance.navigation.type == performance.navigation.TYPE_RELOAD) {
   localStorage.clear();
 }
 
-//var slider = document.getElementById("yearSlider");
-//slider.style.opacity = "0";
-//var outputTextIdentifier = document.getElementById('output-text');
-//outputTextIdentifier.style.opacity = "0";
-
-/*function updateSentence() {
-  const sentence = `Wow! That's good compounding. You know what's better? If you invest for another ${selectedYears} years, your portfolio value would be `;
-  document.getElementById("outputTextIdentifier").innerHTML = sentence + additionalExpectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
-} */
-
 document.getElementById("calculateBtn").addEventListener("click", function() {
   if(!document.getElementById('monthlyInvestment').value || !document.getElementById('investmentPeriod').value || !document.getElementById('annualReturnRate').value) {
     alert("Please enter values in all input fields before calculating.");
@@ -54,12 +44,6 @@ document.getElementById("calculateBtn").addEventListener("click", function() {
     outputAdditionalExpectedAmount;
     outputTextIdentifier.style.opacity = "1";
 
-   /* const slider= document.getElementById("yearSlider");
-    const output = document.getElementById("output-text");
-    slider.addEventListener("input", function() {
-      const selectedYears = this.value;
-      updateSentence(selectedYears);
-    }); */
   }); 
   
   function updateExpectedValue() {
@@ -183,11 +167,15 @@ var table = document.getElementById("investment-table");
 var chart = document.getElementById("chart");
 
 viewChartBtn.addEventListener("click", function() {
+  
   if (table.style.display === "none") {
+    chart.style.display = "block";
     table.style.display = "block";
     chart.style.display = "none";
     viewChartBtn.innerHTML = "View Chart";
-  } else {
+  } 
+  else {
+    chart.style.display = "none";
     table.style.display = "none";
     chart.style.display = "block";
     viewChartBtn.innerHTML = "View Table";
@@ -200,7 +188,7 @@ document.getElementById('comingSoonMessage').style.position = "absolute";
 function swapVisuals() {
   if(document.getElementById('investment-table').style.opacity == 1) {
     document.getElementById('investment-table').style.opacity = "0";
-    //document.getElementById('myChart').style.opacity = "1";
+    document.getElementById('chart').style.opacity = "1";
     document.getElementById('comingSoonMessage').style.opacity = "1";
     for(var i = 0;  i < numberOfRows; i++) {
       var fourthColumnData = document.getElementById('investment-table').rows[i].cells[3].innerHTML;
@@ -210,7 +198,7 @@ function swapVisuals() {
   }
   else {
     document.getElementById('investment-table').style.opacity = "1";
-    //document.getElementById('myChart').style.opacity = "0";
+    //document.getElementById('chart').style.opacity = "0";
     document.getElementById('view-chart-btn').innerHTML = "View Graph";
     document.getElementById('comingSoonMessage').style.opacity = "0";
   }
@@ -244,3 +232,68 @@ function updateCurrency(selectedCurrency) {
       break;
   }
 }
+
+function createChart() {
+  var ctx = document.getElementById("chart").getContext("2d");
+  var investmentPeriod = parseFloat(document.getElementById("investmentPeriod").value);
+  var annualReturnRate = parseFloat(document.getElementById("annualReturnRate").value);
+  var monthlyInvestment = parseFloat(document.getElementById("monthlyInvestment").value);
+  var chartData = [];
+  var expectedAmount = 0;
+  var runningTotal = 0;
+
+  for (let i = 0; i <= (investmentPeriod * 12); i++) {
+    runningTotal = monthlyInvestment + expectedAmount;
+    expectedAmount = runningTotal * (1 + (annualReturnRate / (12 * 100)));
+    chartData.push({ x: i, y: expectedAmount });
+  }
+
+  var chart = new Chart(ctx, {
+    type: "line",
+    data: {
+      datasets: [
+        {
+          label: "Expected Value",
+          data: chartData,
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
+        },
+      ],
+    },
+    options: {
+      scales: {
+        x: {
+          type: "linear",
+          position: "bottom",
+          scaleLabel: {
+            display: true,
+            labelString: "Investment Period (in months)",
+          },
+        },
+        y: {
+          type: "linear",
+          scaleLabel: {
+            display: true,
+            labelString: "Expected Value (in USD)",
+          },
+        },
+      },
+      tooltips: {
+        mode: "index",
+        intersect: false,
+        callbacks: {
+            label: function(tooltipItem, data) {
+              var value = data.datasets[0].data[tooltipItem.index];
+              return value.y.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+            }
+        }
+      },
+      responsive: true,
+    },
+  });
+}
+createChart(investmentPeriod, expectedAmount);
+document.getElementById("advanced-btn").addEventListener("click", swapVisuals);
+document.getElementById("view-graph-btn").addEventListener("click", function() {
+  document.getElementById("chart-container").style.display = "block";
+});

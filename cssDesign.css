@@ -112,7 +112,7 @@ form button:hover {
   transition: all 0.5s ease-in-out;
 }
 #advanced-box.show {
-  display: block;
+  display: block; 
 }
 #advanced-box.hidden {
   display: none;
