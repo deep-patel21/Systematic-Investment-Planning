@@ -180,7 +180,7 @@ viewChartBtn.addEventListener("click", function() {
     chart.style.display = "block";
     viewChartBtn.innerHTML = "View Table";
   }
-  createChart();
+ // createChart();
 });
 
 document.getElementById('comingSoonMessage').style.opacity = "0";
@@ -188,7 +188,7 @@ document.getElementById('comingSoonMessage').style.position = "absolute";
 function swapVisuals() {
   if(document.getElementById('investment-table').style.opacity == 1) {
     document.getElementById('investment-table').style.opacity = "0";
-    document.getElementById('chart').style.opacity = "1";
+    //document.getElementById('chart').style.opacity = "1";
     document.getElementById('comingSoonMessage').style.opacity = "1";
     for(var i = 0;  i < numberOfRows; i++) {
       var fourthColumnData = document.getElementById('investment-table').rows[i].cells[3].innerHTML;
@@ -233,7 +233,7 @@ function updateCurrency(selectedCurrency) {
   }
 }
 
-function createChart() {
+/*function createChart() {
   var ctx = document.getElementById("chart").getContext("2d");
   var investmentPeriod = parseFloat(document.getElementById("investmentPeriod").value);
   var annualReturnRate = parseFloat(document.getElementById("annualReturnRate").value);
@@ -296,4 +296,4 @@ createChart(investmentPeriod, expectedAmount);
 document.getElementById("advanced-btn").addEventListener("click", swapVisuals);
 document.getElementById("view-graph-btn").addEventListener("click", function() {
   document.getElementById("chart-container").style.display = "block";
-});
+}); */
