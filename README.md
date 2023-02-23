@@ -1,5 +1,6 @@
 # Systematic-Investment-Planning
 Ongoing large scale project featuring an interactive and highly customizable tool to project investment growth based on user input parameters such as expected return rate, monthly investments, period of time, and deference. 
+
 ![LandingPage](https://user-images.githubusercontent.com/103757105/220810449-19e39e93-f1e9-4a5a-b6b2-77419d24b72b.png)
 
  Users are greeted with an interface featuring a tutorial, quick facts, and further resources about investing.
