@@ -204,33 +204,38 @@ function swapVisuals() {
 }
 
 let currenctCurrency = "USD";
+//let calculationCompleted = false;
 
 function updateCurrencyFormatting() {
+  //calculationCompleted = true;
   const selectedCurrency = document.getElementById("currency-select").value;
   currenctCurrency = selectedCurrency;
   let amountInvested = parseFloat(document.getElementById("amountInvested").value.replace(/[^0-9.-]+/g,""));
   let expectedAmount = parseFloat(document.getElementById("expectedAmount").value.replace(/[^0-9.-]+/g,""));
   let wealthGained = parseFloat(document.getElementById("wealthGained").value.replace(/[^0-9.-]+/g,""));
-  
+
   // Format the numeric values in the input elements based on the selected currency
   switch(selectedCurrency) {
     case "USD":
+      //calculationCompleted = true;
       amountInvested = amountInvested.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
       expectedAmount = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
       wealthGained = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
       break;
     case "CAD":
+      //calculationCompleted = true;
       amountInvested = amountInvested.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});
       expectedAmount = expectedAmount.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});      
       wealthGained = wealthGained.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});
       break;
     case "INR":
+      //calculationCompleted = true;
       amountInvested = amountInvested.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
       expectedAmount = expectedAmount.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 2});      
       wealthGained = wealthGained.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
       break;
   }
-  
+  //calculationCompleted = true;
   document.getElementById("amountInvested").value = amountInvested;
   document.getElementById("expectedAmount").value = expectedAmount;
   document.getElementById("wealthGained").value = wealthGained;
