@@ -28,7 +28,7 @@ document.getElementById("calculateBtn").addEventListener("click", function() {
     document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
     document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
     document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
-
+    updateCurrencyFormatting();
 
     var additionalInvestmentPeriod = investmentPeriod + 10;
     let additionalExpectedAmount = 0;
@@ -43,9 +43,8 @@ document.getElementById("calculateBtn").addEventListener("click", function() {
     " If you invest for another <b>10 years</b>, your portfolio value would be " + 
     outputAdditionalExpectedAmount;
     outputTextIdentifier.style.opacity = "1";
-
   }); 
-  
+
   function updateExpectedValue() {
     var numberOfRows = document.getElementById("investment-table").rows.length;
     var totalInvestmentAmount = 0;
@@ -204,34 +203,83 @@ function swapVisuals() {
   }
 }
 
-const currencySelect = document.getElementById("currency-select");
+let currenctCurrency = "USD";
+
+function updateCurrencyFormatting() {
+  const selectedCurrency = document.getElementById("currency-select").value;
+  currenctCurrency = selectedCurrency;
+  let amountInvested = parseFloat(document.getElementById("amountInvested").value.replace(/[^0-9.-]+/g,""));
+  let expectedAmount = parseFloat(document.getElementById("expectedAmount").value.replace(/[^0-9.-]+/g,""));
+  let wealthGained = parseFloat(document.getElementById("wealthGained").value.replace(/[^0-9.-]+/g,""));
+  
+  // Format the numeric values in the input elements based on the selected currency
+  switch(selectedCurrency) {
+    case "USD":
+      amountInvested = amountInvested.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+      expectedAmount = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
+      wealthGained = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+      break;
+    case "CAD":
+      amountInvested = amountInvested.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});
+      expectedAmount = expectedAmount.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});      
+      wealthGained = wealthGained.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});
+      break;
+    case "INR":
+      amountInvested = amountInvested.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
+      expectedAmount = expectedAmount.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 2});      
+      wealthGained = wealthGained.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
+      break;
+  }
+  
+  document.getElementById("amountInvested").value = amountInvested;
+  document.getElementById("expectedAmount").value = expectedAmount;
+  document.getElementById("wealthGained").value = wealthGained;
+}
+
+document.getElementById("currency-select").addEventListener("change", updateCurrencyFormatting);
+
+/*let currencySelect = document.getElementById("currency-select");
 currencySelect.addEventListener("change", function() {
-  const selectedCurrency = this.value;
+  let selectedCurrency = this.value;
   amountInvestedSwap = parseFloat(document.getElementById("amountInvested").value);
   expectedAmountSwap = parseFloat(document.getElementById("expectedAmount").value);
   wealthGainedSwap = parseFloat(document.getElementById("wealthGained").value);
-  updateCurrency(selectedCurrency);
+  //updateCurrency(selectedCurrency);
+  updateCurrency(selectedCurrency, amountInvestedSwap, expectedAmountSwap, wealthGainedSwap);
 });
 
-function updateCurrency(selectedCurrency) {
+function updateCurrency(selectedCurrency, amountInvestedSwap, expectedAmountSwap, wealthGainedSwap) {
+  /*if(selectedCurrency == "USD") {
+    document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+    document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
+    document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});  
+  }
+  else if(selectedCurrency == "INR") {
+    document.getElementById("amountInvested").value = amountInvested.toLocaledString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
+    document.getElementById("expectedAmount").value = expectedAmount.toLocaledString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 2});;
+    document.getElementById("wealthGained").value = wealthGained.toLocaledString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 2});;  
+  } 
   switch(selectedCurrency) {
     case "USD":
-      document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
-      document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
-      document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
-      break;
-    case "CAD":
-      document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});
-      document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});      
-      document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-CA', {style: 'currency', currency: 'CAD', maximumFractionDigits: 2});
+      //document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+      amountInvestedSwap.value = amountInvestedSwap.value.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+      //document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
+      document.getElementById("expectedAmount").value = expectedAmountSwap;
+      //document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+      document.getElementById("wealthGained").value = wealthGainedSwap;
       break;
     case "INR":
-      document.getElementById("amountInvested").value = parseFloat(amountInvested).toLocaleString("en-IN", {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
-      document.getElementById("expectedAmount").value = parseFloat(expectedAmount).toLocaleString("en-IN", {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
-      document.getElementById("wealthGained").value = parseFloat(wealthGained).toLocaleString("en-IN", {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
+      document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 2});
+      document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 2});;
+      document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 2});;  
+      break;
+    case "CAD":
+      document.getElementById("amountInvested").value = amountInvested;
+      document.getElementById("expectedAmount").value = expectedAmount;
+      document.getElementById("wealthGained").value = wealthGained;
       break;
   }
-}
+} */
 
 /*function createChart() {
   var ctx = document.getElementById("chart").getContext("2d");
