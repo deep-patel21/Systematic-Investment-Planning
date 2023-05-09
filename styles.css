@@ -68,6 +68,7 @@ form button:hover {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  z-index: 1000;
 }
 #close-btn:hover {
   transform: scale(0.95);
@@ -83,6 +84,7 @@ form button:hover {
   border: none; /* No border */
   cursor: pointer; /* Cursor changes to a pointer when hovering over the button */
   font-size: 16px;
+  z-index: 1000;
 }
 #view-chart-btn:hover {
   transform: scale(0.95);
@@ -239,3 +241,8 @@ th {
   align-items: center;
   justify-content: center;
 }
+
+table td {
+  position: relative;
+}
+
