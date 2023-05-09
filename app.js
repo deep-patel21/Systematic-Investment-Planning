@@ -1,4 +1,4 @@
-if(performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+/*if(performance.navigation.type == performance.navigation.TYPE_RELOAD) {
   localStorage.clear();
 }
 
