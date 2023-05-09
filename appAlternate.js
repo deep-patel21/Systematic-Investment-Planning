@@ -173,6 +173,18 @@ advancedBtn.addEventListener("click", function() {
       }
       advancedBox.appendChild(table);
       updateExpectedValue();
+
+      //Begin New 
+      /*let inputFields = document.querySelectorAll('#investment-table input[type="text"]');
+      inputFields.forEach(inputField => {
+        inputFields.addEventListener('input', function() {
+          if(this.value == '') {
+            this.value = 0;
+          }
+          updateExpectedValue();
+      })}); */
+      //End New
+
       for(var i = 0; i < numberOfRows; i++) {
         document.getElementById('investment-table').rows[i].cells[1].getElementsByTagName('input')[0].addEventListener('input', updateExpectedValue);
         document.getElementById('investment-table').rows[i].cells[2].getElementsByTagName('input')[0].addEventListener('input', updateExpectedValue);
@@ -232,7 +244,7 @@ let chart = document.getElementById("chart");
 let table = document.getElementById("investment-table");
 
 //Switches between table and chart upon button click
-viewChartBtn.addEventListener("click", function() {
+function swapTableGraph() {
   if(viewChartBtn.innerHTML == "View Graph") {
     viewChartBtn.innerHTML = "View Table";
     chart.style.opacity = "1";
@@ -243,8 +255,7 @@ viewChartBtn.addEventListener("click", function() {
     table.style.opacity = "1";
     chart.style.opacity = "0";
   }
-});
-
+}
 
 //Currency manipulation based on user input
 let currenctCurrency = "USD";
