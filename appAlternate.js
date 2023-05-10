@@ -23,6 +23,21 @@ document.getElementById("monthlyInvestment").addEventListener("input", function(
   document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
   document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
   document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+
+  var additionalInvestmentPeriod = investmentPeriod + 10;
+  let additionalExpectedAmount = 0;
+  let addtionalRunningTotal = 0;
+  document.getElementById("output-text").style.opacity = "1";
+  for(let i = 0; i < (additionalInvestmentPeriod * 12); i++) {
+    addtionalRunningTotal = monthlyInvestment + additionalExpectedAmount;
+    additionalExpectedAmount = addtionalRunningTotal * (1 + (annualReturnRate / (12 * 100)));
+  }
+  var outputTextIdentifier = document.getElementById('output-text');
+  var outputAdditionalExpectedAmount = additionalExpectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+  outputTextIdentifier.innerHTML = "<b>Extended Analysis:</b> <br> Wow! That's good compounding. You know what's better?" + 
+  " If you invest for another <b>10 years</b>, your portfolio value would be " + 
+  outputAdditionalExpectedAmount;
+  outputTextIdentifier.style.opacity = "1";
 });
 
 document.getElementById("investmentPeriod").addEventListener("input", function() {
@@ -44,6 +59,21 @@ document.getElementById("investmentPeriod").addEventListener("input", function()
   document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
   document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
   document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+
+  var additionalInvestmentPeriod = investmentPeriod + 10;
+  let additionalExpectedAmount = 0;
+  let addtionalRunningTotal = 0;
+  document.getElementById("output-text").style.opacity = "1";
+  for(let i = 0; i < (additionalInvestmentPeriod * 12); i++) {
+    addtionalRunningTotal = monthlyInvestment + additionalExpectedAmount;
+    additionalExpectedAmount = addtionalRunningTotal * (1 + (annualReturnRate / (12 * 100)));
+  }
+  var outputTextIdentifier = document.getElementById('output-text');
+  var outputAdditionalExpectedAmount = additionalExpectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+  outputTextIdentifier.innerHTML = "<b>Extended Analysis:</b> <br> Wow! That's good compounding. You know what's better?" + 
+  " If you invest for another <b>10 years</b>, your portfolio value would be " + 
+  outputAdditionalExpectedAmount;
+  outputTextIdentifier.style.opacity = "1";
 });
 
 document.getElementById("annualReturnRate").addEventListener("input", function() { 
@@ -65,6 +95,21 @@ document.getElementById("annualReturnRate").addEventListener("input", function()
   document.getElementById("amountInvested").value = amountInvested.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
   document.getElementById("expectedAmount").value = expectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});      
   document.getElementById("wealthGained").value = wealthGained.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+
+  var additionalInvestmentPeriod = investmentPeriod + 10;
+  let additionalExpectedAmount = 0;
+  let addtionalRunningTotal = 0;
+  document.getElementById("output-text").style.opacity = "1";
+  for(let i = 0; i < (additionalInvestmentPeriod * 12); i++) {
+    addtionalRunningTotal = monthlyInvestment + additionalExpectedAmount;
+    additionalExpectedAmount = addtionalRunningTotal * (1 + (annualReturnRate / (12 * 100)));
+  }
+  var outputTextIdentifier = document.getElementById('output-text');
+  var outputAdditionalExpectedAmount = additionalExpectedAmount.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 2});
+  outputTextIdentifier.innerHTML = "<b>Extended Analysis:</b> <br> Wow! That's good compounding. You know what's better?" + 
+  " If you invest for another <b>10 years</b>, your portfolio value would be " + 
+  outputAdditionalExpectedAmount;
+  outputTextIdentifier.style.opacity = "1";
 });
 
 /*document.getElementById("calculateBtn").addEventListener("click", function() {
@@ -72,7 +117,7 @@ document.getElementById("annualReturnRate").addEventListener("input", function()
     alert("Please enter values in all input fields before calculating.");
     return;
   } 
-
+  else {
     var monthlyInvestment = parseFloat(document.getElementById("monthlyInvestment").value);
     var investmentPeriod = parseFloat(document.getElementById("investmentPeriod").value);
     var annualReturnRate = parseFloat(document.getElementById("annualReturnRate").value);
@@ -96,6 +141,7 @@ document.getElementById("annualReturnRate").addEventListener("input", function()
     var additionalInvestmentPeriod = investmentPeriod + 10;
     let additionalExpectedAmount = 0;
     let addtionalRunningTotal = 0;
+    document.getElementById("output-text").style.opacity = "1";
     for(let i = 0; i < (additionalInvestmentPeriod * 12); i++) {
       addtionalRunningTotal = monthlyInvestment + additionalExpectedAmount;
       additionalExpectedAmount = addtionalRunningTotal * (1 + (annualReturnRate / (12 * 100)));
@@ -106,8 +152,8 @@ document.getElementById("annualReturnRate").addEventListener("input", function()
     " If you invest for another <b>10 years</b>, your portfolio value would be " + 
     outputAdditionalExpectedAmount;
     outputTextIdentifier.style.opacity = "1";
-  }); */
-
+  }}); */
+  
 //Advanced Mode real-time updates, based on user inputs
 function updateExpectedValue() {
   var numberOfRows = document.getElementById("investment-table").rows.length;
@@ -264,8 +310,8 @@ var data = {
   datasets: [{
     label: "Expected Value",
     data: [],
-    backgroundColor: "rgba(0, 0, 0, 0.1)",
-    borderColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: "rgba(76, 175, 80, 0.7)",
+    borderColor: "rgba(0, 0, 0, 1)",
     borderWidth: 1,
     fill: true
   }]
@@ -274,7 +320,56 @@ var ctx = chart.getContext("2d");
 var myChart = new Chart(ctx, {
   type: "line",
   data: data,
-  options: {}
+  options: {
+    title: {
+    display: true,
+    text: "S.I.P. Visualization Tool",
+    fontSize: 30,
+  },
+  tooltips: {
+    backgroundColor: "#FAFAFA",
+    borderColor: "black",
+    borderWidth: 1,
+    titleFontColor: "black",
+    titleFontStyle: "normal",
+    displayColors: true,
+    bodyFontColor: "black"
+  },
+  legend: {
+    display: false
+  },
+  plugins: {
+    zoom: {
+      pan: {
+        enabled: true,
+        mode: "x",
+        speed: 100,
+        threshold: 10
+      },
+      zoom: {
+        enabled: true,
+        mode: "y"
+      }
+    }
+  },
+  interaction: {
+    mode: 'nearest',
+    axis: 'x',
+    intersect: false
+  },
+  interaction: {
+    intersect: false,
+    mode: 'index',
+  },
+  plugins: {
+    title: {
+      display: true,
+      text: (ctx) => {
+        const {axis = 'xy', intersect, mode} = ctx.chart.options.interaction;
+        return 'Mode: ' + mode + ', axis: ' + axis + ', intersect: ' + intersect;
+      }
+    },
+  }}
 });
 chart.style.opacity = "0";
 
