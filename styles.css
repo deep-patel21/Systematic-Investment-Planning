@@ -246,3 +246,33 @@ table td {
   position: relative;
 }
 
+#flags {
+  position: absolute;
+  top: 0;
+  margin-top: 10px;
+  left: 0;
+  z-index: 1001;
+  left: 500;
+  opacity: 0;
+}
+
+#flags:hover {
+  position: absolute;
+  top: 0;
+  margin-top: 10px;
+  left: 0;
+  z-index: 1001;
+  left: 500;
+  opacity: 1;
+  transition: 1.2s ease-in-out;
+}
+
+tbody, thead {
+  display: block;
+  position: absolute;
+}
+
+tbody {
+  height: 700px;
+  overflow: auto;
+}
