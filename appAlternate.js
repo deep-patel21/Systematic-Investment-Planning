@@ -112,7 +112,7 @@ document.getElementById("annualReturnRate").addEventListener("input", function()
   outputTextIdentifier.style.opacity = "1";
 });
 
-/*document.getElementById("calculateBtn").addEventListener("click", function() {
+document.getElementById("calculateBtn").addEventListener("click", function() {
   if(!document.getElementById('monthlyInvestment').value || !document.getElementById('investmentPeriod').value || !document.getElementById('annualReturnRate').value) {
     alert("Please enter values in all input fields before calculating.");
     return;
@@ -152,7 +152,7 @@ document.getElementById("annualReturnRate").addEventListener("input", function()
     " If you invest for another <b>10 years</b>, your portfolio value would be " + 
     outputAdditionalExpectedAmount;
     outputTextIdentifier.style.opacity = "1";
-  }}); */
+  }});
   
 //Advanced Mode real-time updates, based on user inputs
 function updateExpectedValue() {
