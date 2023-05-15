@@ -267,7 +267,9 @@ table td {
   transition: 1.2s ease-in-out;
 }
 
-tbody, thead {
+/*BEGIN control for scrollbar in table */
+
+/*tbody, thead {
   display: block;
   position: absolute;
 }
@@ -275,4 +277,6 @@ tbody, thead {
 tbody {
   height: 700px;
   overflow: auto;
-}
+} */
+
+/*END control for scrollbar in table/*
