@@ -401,73 +401,12 @@ chart.style.left = table.offsetLeft + "px";
 // Initially hide chart
 chart.style.opacity = "0";
 
-//BEGIN ALETNATE IMPLEMENTATION
-//Generating graph based on value of expected value and year in table
-//let viewChartBtn = document.getElementById("view-chart-btn");
-//let chart = document.getElementById("chart");
-//let table = document.getElementById("investment-table");
-/*function generateGraph() {
-  var data = {
-    labels: [],
-    datasets: [{
-      label: "Expected Value",
-      data: [],
-      backgroundColor: "rgba(0, 0, 0, 0.1)",
-      borderColor: "rgba(0, 0, 0, 0.5)",
-      borderWidth: 1,
-      fill: true
-    }]
-  };
-  var numberOfRows = document.getElementById("investment-table").rows.length;
-  for(let i = 1; i < numberOfRows; i++) {
-    var expectedValue = document.getElementById('investment-table').rows[i].cells[3].innerHTML;
-    var year = document.getElementById('investment-table').rows[i].cells[0].innerHTML;
-    expectedValue = parseFloat(expectedValue.replace(/[^0-9.-]+/g,""));
-    data.labels.push(year);
-    data.datasets[0].data.push(expectedValue);
-  }
-  var ctx = document.getElementById("chart").getContext("2d");
-  var myChart = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: {
-      layout: {
-        padding: {
-          left: 10,
-          right: 10,
-          top: 10,
-          bottom: 10
-        }
-      }
-    }
-  });
-  document.getElementById('investment-table').style.position = "absolute";
-}
-
-//Switches between table and chart upon button click
-function swapTableGraph() {
-  if(viewChartBtn.innerHTML == "View Graph") {
-    viewChartBtn.innerHTML = "View Table";
-    document.getElementById("chart").style.opacity = "1";
-    document.getElementById("investment-table").style.opacity = "0";
-    generateGraph();
-  }
-  else if(viewChartBtn.innerHTML == "View Table") {
-    viewChartBtn.innerHTML = "View Graph";
-    document.getElementById("investment-table").style.opacity = "1";
-    document.getElementById("chart").style.opacity = "0";
-  }
-} */
-//END ALTERNATE IMPLEMENTATION
-
-
-
 //Currency manipulation based on user input
-let currenctCurrency = "USD";
+let currentCurrency = "USD";
 
 function updateCurrencyFormatting() {
   const selectedCurrency = document.getElementById("currency-select").value;
-  currenctCurrency = selectedCurrency;
+  currentCurrency = selectedCurrency;
   let amountInvested = parseFloat(document.getElementById("amountInvested").value.replace(/[^0-9.-]+/g,""));
   let expectedAmount = parseFloat(document.getElementById("expectedAmount").value.replace(/[^0-9.-]+/g,""));
   let wealthGained = parseFloat(document.getElementById("wealthGained").value.replace(/[^0-9.-]+/g,""));
@@ -493,6 +432,6 @@ function updateCurrencyFormatting() {
   document.getElementById("expectedAmount").value = expectedAmount;
   document.getElementById("wealthGained").value = wealthGained;
 }
-
 document.getElementById("currency-select").addEventListener("change", updateCurrencyFormatting);
+
 
