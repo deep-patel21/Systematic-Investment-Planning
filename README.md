@@ -9,7 +9,7 @@ Ongoing project featuring an interactive and highly customizable tool to project
 
 Dynamic Pane allows for updates to be pushed to the DOM based on previously input user data.
 
-![advancedMode](https://user-images.githubusercontent.com/103757105/220810644-8bc2fa68-6630-406f-8b11-eec8f6541374.png)
+![image](https://github.com/deep-patel21/Systematic-Investment-Planning/assets/103757105/936a05d9-9386-4013-a6b9-259652dc3416)
 
 ![image](https://github.com/deep-patel21/Systematic-Investment-Planning/assets/103757105/abcda445-93ae-48e5-9397-387e2b25c4b4)
 
