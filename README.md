@@ -11,6 +11,9 @@ Dynamic Pane allows for updates to be pushed to the DOM based on previously inpu
 
 ![advancedMode](https://user-images.githubusercontent.com/103757105/220810644-8bc2fa68-6630-406f-8b11-eec8f6541374.png)
 
+![image](https://github.com/deep-patel21/Systematic-Investment-Planning/assets/103757105/abcda445-93ae-48e5-9397-387e2b25c4b4)
+
+
 Economic formulas are implemented to forecast long term money growth, with visual graphics coming in the future.
 
 ![CurrencySelector](https://user-images.githubusercontent.com/103757105/220810879-a959e2db-32c8-41f9-a471-6ee162a2157c.png)
