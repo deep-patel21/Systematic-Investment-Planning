@@ -8,10 +8,10 @@ Ongoing project featuring an interactive and highly customizable tool to project
 ![ExtendedAnalysis](https://user-images.githubusercontent.com/103757105/220810561-375af2b3-3131-4c31-966a-75a1fc53ad02.png)
 
 Dynamic Pane allows for updates to be pushed to the DOM based on previously input user data.
+![tableview](https://github.com/deep-patel21/Systematic-Investment-Planning/assets/103757105/89c5ce0d-f0c8-442e-af77-01a616ce3f01)
 
-![image](https://github.com/deep-patel21/Systematic-Investment-Planning/assets/103757105/936a05d9-9386-4013-a6b9-259652dc3416)
-
-![image](https://github.com/deep-patel21/Systematic-Investment-Planning/assets/103757105/abcda445-93ae-48e5-9397-387e2b25c4b4)
+Familiar Excel-like functionality allows year-by-year analysis at various investment amounts and return rates.
+![graphview](https://github.com/deep-patel21/Systematic-Investment-Planning/assets/103757105/f093f8d3-cc50-4393-ad56-6af3ea31af0d)
 
 Economic formulas are implemented to forecast long term money growth, with visual graphics coming in the future.
 
